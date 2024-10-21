@@ -1,6 +1,6 @@
 import { IAuthService } from "@domain/interfaces/authService";
 
-export const newAuthUseCase = (
+export const AuthUseCase = (
     authService: IAuthService
 
 ) => {

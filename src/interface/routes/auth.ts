@@ -1,16 +1,16 @@
 import { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { FastifyInstance, FastifyPluginOptions } from 'fastify';
-import { newAuthController } from '@interface/controllers/auth';
-import { newAuthService } from "@domain/service/auth";
+import { AuthController } from '@interface/controllers/auth';
+import { AuthService } from "@domain/service/auth";
 
 import { RegisterDTO } from '@interface/dto/auth/register';
-import { newAuthSessionRepository } from "@infrastructure/repositories/typed-orm/authSessionRepository";
+import { AuthSessionRepository } from "@infrastructure/repositories/typed-orm/authSessionRepository";
 
 export const authRoutes: FastifyPluginAsyncZod = async (fastifyInstance: FastifyInstance, options: FastifyPluginOptions) => {
-    const authSessionRepository = newAuthSessionRepository();
-    const userService = newAuthService(authSessionRepository);
+    const authSessionRepository = AuthSessionRepository();
+    const userService = AuthService(authSessionRepository);
     const authUseCase = () => {};
-    const authController = newAuthController();
+    const authController = AuthController();
 
     fastifyInstance.route({
         method: 'POST',

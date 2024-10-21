@@ -1,6 +1,6 @@
 import { IAuthSessionRepository } from "@domain/interfaces/authSessionRepository";
 
-export const newAuthService = (repository: IAuthSessionRepository) => {
+export const AuthService = (repository: IAuthSessionRepository) => {
     const findSession = async () => {
         //
     }
