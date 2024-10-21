@@ -1,12 +1,12 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { RegisterDTO, RegisterDTOType } from '../dto/auth/register';
-import { IUserRepository } from "@domain/interfaces/userRepository";
+import { IAuthUseCase } from '@domain/interfaces/authUseCase';
 
-export const AuthController = () => {
+export const AuthController = (authUseCase: IAuthUseCase) => {
     const register = async (request: FastifyRequest, reply: FastifyReply) => {
         const registerDTO: RegisterDTOType = RegisterDTO.parse(request.body);
 
-        reply.send('Register route');
+        reply.send(registerDTO)
     };
 
     const login = async (request: FastifyRequest, reply: FastifyReply) => {
