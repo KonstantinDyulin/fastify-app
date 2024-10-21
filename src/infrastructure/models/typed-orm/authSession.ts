@@ -1,17 +1,14 @@
 import {
     Column,
     Entity,
-    ManyToOne,
-} from "typeorm";
-import { User } from "./User";
+    ManyToOne, PrimaryColumn, PrimaryGeneratedColumn
+} from 'typeorm';
+import { User } from "./user";
 
 @Entity()
 export class AuthSession {
-    @ManyToOne(() => User, (user) => user.id)
-    @Column('varchar', {
-        primary: true
-    })
-    userId: string;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column('varchar', {
         length: 255
@@ -28,4 +25,9 @@ export class AuthSession {
         unique: true
     })
     refreshToken: string
+
+    @ManyToOne(() => User, (user) => user.refreshTokens, {
+        onDelete: 'CASCADE'
+    })
+    user: User
 }

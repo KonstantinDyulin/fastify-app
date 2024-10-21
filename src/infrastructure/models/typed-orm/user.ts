@@ -7,7 +7,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from 'typeorm';
-import { AuthSession } from './AuthSession';
+import { AuthSession } from './authSession';
 
 @Entity()
 export class User {
@@ -29,9 +29,6 @@ export class User {
     })
     password: string;
 
-    @OneToMany(() => AuthSession, (authSession) => authSession.refreshToken)
-    refreshTokens: AuthSession[]
-
     @CreateDateColumn()
     createdAt: Date;
 
@@ -40,4 +37,7 @@ export class User {
 
     @DeleteDateColumn()
     deletedAt: Date;
+
+    @OneToMany(() => AuthSession, (authSession) => authSession.user)
+    refreshTokens: AuthSession[]
 }

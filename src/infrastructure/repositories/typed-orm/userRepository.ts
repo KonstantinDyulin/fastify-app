@@ -1,4 +1,4 @@
-import { User } from '@infrastructure/models/typed-orm/User';
+import { User } from '@infrastructure/models/typed-orm/user';
 import { OrmDataSource } from '@infrastructure/database/typed-orm/dataSource';
 import { IUserRepository } from "@domain/interfaces/userRepository";
 

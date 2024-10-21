@@ -4,7 +4,7 @@ import { newAuthController } from '@interface/controllers/auth';
 import { newAuthService } from "@domain/service/auth";
 
 import { RegisterDTO } from '@interface/dto/auth/register';
-import { newAuthSessionRepository } from "@infrastructure/repositories/typed-orm/AuthSessionRepository";
+import { newAuthSessionRepository } from "@infrastructure/repositories/typed-orm/authSessionRepository";
 
 export const authRoutes: FastifyPluginAsyncZod = async (fastifyInstance: FastifyInstance, options: FastifyPluginOptions) => {
     const authSessionRepository = newAuthSessionRepository();
