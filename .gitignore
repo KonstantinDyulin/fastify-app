@@ -1,4 +1,4 @@
 node_modules
-sqlite.sql
+sqlite.db
 .env
 .idea/

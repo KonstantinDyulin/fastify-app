@@ -1,14 +1,12 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { RegisterDTO, RegisterDTOType } from '../dto/auth/register';
-import { UserRepository } from '@infrastructure/repositories/typed-orm/UserRepository';
+import { IUserRepository } from "@domain/interfaces/userRepository";
 
-export const newAuthController = (userRepository: UserRepository) => {
+export const newAuthController = () => {
     const register = async (request: FastifyRequest, reply: FastifyReply) => {
         const registerDTO: RegisterDTOType = RegisterDTO.parse(request.body);
 
-        const user = await userRepository.findById('daff14e3-3592-4f3c-a789-e1a0baf904a3')
-
-        reply.send(user);
+        reply.send('Register route');
     };
 
     const login = async (request: FastifyRequest, reply: FastifyReply) => {

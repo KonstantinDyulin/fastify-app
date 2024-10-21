@@ -1,19 +1,30 @@
-import { DataSource, Repository } from 'typeorm';
 import { User } from '@infrastructure/models/typed-orm/User';
 import { OrmDataSource } from '@infrastructure/database/typed-orm/dataSource';
+import { IUserRepository } from "@domain/interfaces/userRepository";
 
-export class UserRepository {
-    private repository: Repository<User>;
+export const newUserRepository= () => {
+    const repository = OrmDataSource.getRepository(User);
 
-    constructor() {
-        this.repository = OrmDataSource.getRepository(User);
+    const create = async () => {
+        //
+    };
+
+    const findById = async () => {
+        //
+    };
+
+    const findByEmail = async () => {
+        //
+    };
+
+    const getAll = async () => {
+        //
     }
 
-    async findById(id: string): Promise<any> {
-        return this.repository.findOneBy({ id });
+    return {
+        create,
+        findById,
+        findByEmail,
+        getAll
     }
-}
-
-const newUserRepository = (dataSource: DataSource) => {
-    const repository = dataSource.getRepository(User);
 }

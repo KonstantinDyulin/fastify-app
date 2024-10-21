@@ -1,24 +1,30 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+    Column,
+    Entity,
+    ManyToOne,
+} from "typeorm";
 import { User } from "./User";
 
 @Entity()
 export class AuthSession {
     @ManyToOne(() => User, (user) => user.id)
-    @PrimaryGeneratedColumn('uuid')
+    @Column('varchar', {
+        primary: true
+    })
     userId: string;
 
-    @Column({
-        type: 'varchar'
+    @Column('varchar', {
+        length: 255
     })
     userAgent: string
 
-    @Column({
-        type: 'varchar'
+    @Column('varchar', {
+        length: 255
     })
     clientIp: string
 
-    @Column({
-        type: 'varchar',
+    @Column('varchar', {
+        length: 255,
         unique: true
     })
     refreshToken: string

@@ -16,9 +16,14 @@ const buildApp = async () => {
 }
 
 const runApp = async () => {
-    await OrmDataSource.initialize();
-
     const app = await buildApp();
+
+    try {
+        await OrmDataSource.initialize();
+        console.log('Data source has been initialized');
+    } catch (error) {
+        console.log("Error during Data Source initialization", error)
+    }
 
     try {
         const port = await app.listen({ port: 8080 });
