@@ -1,21 +1,21 @@
-import { IAuthSessionRepository } from "@domain/interfaces/authSessionRepository";
+import { IAuthSessionRepository } from '@domain/interfaces/authSessionRepository';
+import { IAuthService } from '@domain/interfaces/authService';
 
-export const AuthService = (repository: IAuthSessionRepository) => {
-    const findSession = async () => {
+export class AuthService implements IAuthService {
+    constructor(
+        private authRepository: IAuthSessionRepository
+    ) {
+    }
+
+    async findSession() {
         //
     }
 
-    const updateOrCreateSession = async () => {
+    async updateOrCreateSession() {
         //
     }
 
-    const deleteSession = async () => {
+    async deleteSession() {
         //
-    }
-
-    return {
-        findSession,
-        updateOrCreateSession,
-        deleteSession
     }
 }

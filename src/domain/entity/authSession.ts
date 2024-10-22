@@ -1,6 +1,4 @@
-import { randomUUID } from 'node:crypto';
-
-export interface AuthSession {
+export interface IAuthSession {
     id: string;
     userID: string;
     userAgent: string;
@@ -10,20 +8,22 @@ export interface AuthSession {
     updatedAt: Date;
 }
 
-export function createAuthSession(
+export const createAuthSession = (
+    id: string,
     userID: string,
     userAgent: string,
     clientIP: string,
-    refreshToken: string
-): AuthSession {
-    const now = new Date();
+    refreshToken: string,
+    createdAt: Date,
+    updatedAt: Date,
+): IAuthSession => {
     return {
-        id: randomUUID(),
+        id,
         userID,
         userAgent,
         clientIP,
         refreshToken,
-        createdAt: now,
-        updatedAt: now,
+        createdAt,
+        updatedAt
     };
 }

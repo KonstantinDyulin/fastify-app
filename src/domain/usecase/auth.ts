@@ -1,32 +1,29 @@
-import { IAuthService } from "@domain/interfaces/authService";
+import { IAuthService } from '@domain/interfaces/authService';
 import { IUserService } from '@domain/interfaces/userService';
 import { IAuthManager } from '@domain/interfaces/authManager';
+import { IAuthUseCase } from '@domain/interfaces/authUseCase';
 
-export const AuthUseCase = (
-    authService: IAuthService,
-    userService: IUserService,
-    authManager: IAuthManager
-) => {
-    const register = async () => {
+export class AuthUseCase implements IAuthUseCase {
+    constructor(
+        private authService: IAuthService,
+        private userService: IUserService,
+        private authManager: IAuthManager
+    ) {
+    }
+
+    async login() {
         //
     }
 
-    const login = async () => {
+    async register(name: string, email: string, password: string) {
+
+    }
+
+    async logout() {
         //
     }
 
-    const logout = async () => {
+    async refreshAccessToken() {
         //
-    }
-
-    const refreshAccessToken = async () => {
-        //
-    }
-
-    return {
-        register,
-        login,
-        logout,
-        refreshAccessToken
     }
 }

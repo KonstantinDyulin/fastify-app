@@ -1,28 +1,25 @@
+import { IAuthManager } from '@domain/interfaces/authManager';
 
-export const AuthManager = (
-    accessTokenTTL: number,
-    refreshTokenTTL: number,
-    signedString: string | undefined,
-) => {
-    if (!signedString) {
-        throw new Error('JWT_KEY is not defined');
+export class AuthManager implements IAuthManager {
+    constructor(
+        private accessTokenTTL: number,
+        private refreshTokenTTL: number,
+        private signedString: string
+    ) {
+        if (!signedString) {
+            throw new Error('JWT_KEY is not defined');
+        }
     }
 
-    const create = async (userId: string) => {
-        return 'token'
+    async create(userId: string) {
+        return '';
     }
 
-    const parse = async (accessToken: string) => {
-        return 'token'
+    async parse(accessToken: string) {
+        return '';
     }
 
-    const newRefreshToken = async () => {
-        return 'token'
-    }
-
-    return {
-        create,
-        parse,
-        newRefreshToken
+    async newRefreshToken() {
+        return '';
     }
 }

@@ -2,29 +2,27 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { RegisterDTO, RegisterDTOType } from '../dto/auth/register';
 import { IAuthUseCase } from '@domain/interfaces/authUseCase';
 
-export const AuthController = (authUseCase: IAuthUseCase) => {
-    const register = async (request: FastifyRequest, reply: FastifyReply) => {
+export class AuthController {
+    constructor(
+        private authUseCase: IAuthUseCase
+    ) {
+    }
+
+    async register(request: FastifyRequest, reply: FastifyReply) {
         const registerDTO: RegisterDTOType = RegisterDTO.parse(request.body);
 
-        reply.send(registerDTO)
+        reply.send('Register route');
     };
 
-    const login = async (request: FastifyRequest, reply: FastifyReply) => {
+    async login(request: FastifyRequest, reply: FastifyReply) {
         reply.send('Login route');
     };
 
-    const logout = async (request: FastifyRequest, reply: FastifyReply) => {
+    async logout(request: FastifyRequest, reply: FastifyReply) {
         reply.send('Logout route');
     };
 
-    const refreshAccessToken = async (request: FastifyRequest, reply: FastifyReply) => {
+    async refreshAccessToken(request: FastifyRequest, reply: FastifyReply) {
         reply.send('Refresh access token route');
     };
-
-    return {
-        register,
-        login,
-        logout,
-        refreshAccessToken
-    }
 }

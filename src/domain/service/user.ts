@@ -1,21 +1,21 @@
 import { IUserRepository } from '@domain/interfaces/userRepository';
+import { IUserService } from '@domain/interfaces/userService';
 
-export const UserService = (repository: IUserRepository) => {
-    const create = async () => {
+export class UserService implements IUserService {
+    constructor(
+        private userRepository: IUserRepository
+    ) {
+    }
+
+    async create() {
         //
     }
 
-    const listAll = async () => {
+    async listAll() {
         //
     }
 
-    const findById = async () => {
+    async findById() {
         //
-    }
-
-    return {
-        create,
-        listAll,
-        findById
     }
 }

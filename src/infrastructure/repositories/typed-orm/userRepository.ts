@@ -1,30 +1,27 @@
 import { User } from '@infrastructure/models/typed-orm/user';
 import { OrmDataSource } from '@infrastructure/database/typed-orm/dataSource';
-import { IUserRepository } from "@domain/interfaces/userRepository";
+import { Repository } from 'typeorm';
 
-export const UserRepository= () => {
-    const repository = OrmDataSource.getRepository(User);
+export class UserRepository {
+    private repository: Repository<User>;
 
-    const create = async () => {
-        //
-    };
+    constructor() {
+        this.repository = OrmDataSource.getRepository(User);
+    }
 
-    const findById = async () => {
-        //
-    };
-
-    const findByEmail = async () => {
-        //
-    };
-
-    const getAll = async () => {
+    async create() {
         //
     }
 
-    return {
-        create,
-        findById,
-        findByEmail,
-        getAll
+    async findById() {
+        //
+    }
+
+    async findByEmail() {
+        //
+    }
+
+    async getAll() {
+        //
     }
 }

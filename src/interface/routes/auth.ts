@@ -11,24 +11,24 @@ import { UserService } from '@domain/service/user';
 import { UserRepository } from '@infrastructure/repositories/typed-orm/userRepository';
 
 export const authRoutes: FastifyPluginAsyncZod = async (fastifyInstance: FastifyInstance, options: FastifyPluginOptions) => {
-    const authManager = AuthManager(
+    const authManager = new AuthManager(
         15 * 60 * 1000,
         7 * 24 * 60 * 60 * 1000,
-        process.env.JWT_KEY
+        process.env.JWT_KEY || 'jwt_ket'
     );
 
-    const authSessionRepository = AuthSessionRepository();
-    const userRepository = UserRepository()
+    const authSessionRepository = new AuthSessionRepository();
+    const userRepository = new UserRepository()
 
-    const authService = AuthService(authSessionRepository);
-    const userService = UserService(userRepository)
+    const authService = new AuthService(authSessionRepository);
+    const userService = new UserService(userRepository)
 
-    const authUseCase = AuthUseCase(
+    const authUseCase = new AuthUseCase(
         authService,
         userService,
         authManager
     );
-    const authController = AuthController(authUseCase);
+    const authController = new AuthController(authUseCase);
 
     fastifyInstance.route({
         method: 'POST',

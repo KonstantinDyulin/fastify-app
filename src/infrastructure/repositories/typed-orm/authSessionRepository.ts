@@ -1,29 +1,28 @@
-import { OrmDataSource } from "@infrastructure/database/typed-orm/dataSource";
-import { AuthSession } from "@infrastructure/models/typed-orm/authSession";
+import { OrmDataSource } from '@infrastructure/database/typed-orm/dataSource';
+import { IAuthSessionRepository } from '@domain/interfaces/authSessionRepository';
+import { AuthSession } from '@infrastructure/models/typed-orm/authSession';
+import { Repository } from 'typeorm';
 
-export const AuthSessionRepository = () => {
-    const repository = OrmDataSource.getRepository(AuthSession)
+export class AuthSessionRepository implements IAuthSessionRepository {
+    private repository: Repository<AuthSession>;
 
-    const findSession = async () => {
+    constructor() {
+        this.repository = OrmDataSource.getRepository(AuthSession);
+    }
+
+    async createSession() {
         //
     }
 
-    const createSession = async () => {
+    async deleteSession() {
         //
     }
 
-    const updateSession = async () => {
+    async findSession() {
         //
     }
 
-    const deleteSession = async () => {
+    async updateSession() {
         //
-    }
-
-    return {
-        findSession,
-        createSession,
-        updateSession,
-        deleteSession
     }
 }
